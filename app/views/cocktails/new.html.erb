@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Add your cocktail:</h1>
+  <%= simple_form_for(@cocktail) do |f|%>
+    <%= f.input :name, placeholder: "Bellini"%>
+    <%= f.submit %>
+  <% end %>
+  <p><%= link_to "Back to cocktails", root_path, class:"btn btn-primary" %></p>
+</div>
