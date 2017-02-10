@@ -1,6 +1,6 @@
 class DosesController < ApplicationController
   before_action :choose_cocktail, only: [ :new, :create ]
-  before_action :choose_ingredient, only: [ :create ]
+  # before_action :choose_ingredient, only: [ :create ]
   def new
     @dose = Dose.new
     @ingredients = Ingredient.all
@@ -9,7 +9,6 @@ class DosesController < ApplicationController
   def create
     @dose = Dose.new(dose_params)
     @dose.cocktail = @cocktail
-    @dose.ingredient = @ingredient
     if @dose.save
       redirect_to root_path
     else
@@ -29,12 +28,12 @@ class DosesController < ApplicationController
     @cocktail = Cocktail.find(params[:cocktail_id])
   end
 
-  def choose_ingredient
-    @ingredient = Ingredient.find(params[:dose][:ingredient_id])
-  end
+  # def choose_ingredient
+  #   @ingredient = Ingredient.find(params[:dose][:ingredient_id])
+  # end
 
   def dose_params
-    params.require(:dose).permit(:description)
+    params.require(:dose).permit(:description, :ingredient_id)
   end
 
 
